@@ -1,0 +1,48 @@
+/*
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+};
+*/
+class Solution
+{
+    public:
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    vector<int> topView(Node *root)
+    {
+        //Your code here
+        vector<int> ans;
+        if(root== NULL){
+            return ans;
+        }
+        
+        queue<pair<Node*,int>> q;
+        q.push({root, 0});
+        map<int, int> m;
+        while(!q.empty()){
+            auto temp = q.front();
+            q.pop();
+            Node* no = temp.first;
+            int line= temp.second;
+            if(m.count(line) == 0){
+                m[line] = no->data;
+            }
+            if(no->left != NULL){
+                q.push({no->left, line-1});
+            }
+            if(no->right != NULL){
+                q.push({no->right, line+1});
+            }
+        }
+        
+        for(auto i :m){
+            ans.push_back(i.second);
+        }
+        return ans;
+        https://media.geeksforgeeks.org/img-practice/check-square-1596781127.svg
+    }
+
+};
