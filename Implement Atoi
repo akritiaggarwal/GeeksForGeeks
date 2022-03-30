@@ -1,0 +1,31 @@
+#User function template for Python
+
+class Solution:
+    # your task is to complete this function
+    # function should return an integer
+    def atoi(self,string):
+        if string.isdigit():
+            return int(string)
+        if string[0]=='-':
+            l=string[0]
+            string=string[1:]
+            if string.isdigit():
+                l=l+string
+                return int(l)
+            else:
+                return -1
+        return -1
+            
+        # Code here
+
+#{ 
+#  Driver Code Starts
+#Initial template for Python
+
+if __name__=='__main__':
+    t=int(input())
+    for i in range(t):
+        string = input().strip();
+        ob=Solution()
+        print(ob.atoi(string))
+# } Driver Code Ends
